@@ -8,11 +8,7 @@ ob_start();
 get_header();
 ?>
 
-<form class="jotform-form" action="" method="post" name="form_212746288836165" id="212746288836165"
-        accept-charset="utf-8" autocomplete="on" novalidate="true">
-        <input type="hidden" name="formID" value="212746288836165">
-        <input type="hidden" id="JWTContainer" value="">
-        <input type="hidden" id="cardinalOrderNumber" value="">
+<form class="jotform-form" action="" method="post" accept-charset="utf-8" autocomplete="on" novalidate="true">
         <div role="main" class="form-all">
             <div class="formLogoWrapper Left">
                 <!-- <img loading="lazy" class="formLogoImg" src="" height="60" width="60"> - logo img -->
@@ -31,10 +27,14 @@ get_header();
                     <label class="form-label form-label-top form-label-auto" id="label_49" for="input_49"> Exchange of
                         Records/Release of Information </label>
                     <div id="cid_49" class="form-input-wide always-hidden" data-layout="half">
-                        <input type="text" id="input_49" name="q49_exchangeOf49" data-type="input-textbox"
-                            class="form-textbox" data-defaultvalue="Exchange of Records Form - EN" style="width:310px"
-                            size="310" value="Exchange of Records Form - EN" data-component="textbox"
-                            aria-labelledby="label_49">
+                        <?php if (!empty($_POST['q49_exchangeOf49'])): ?>
+                            <b><?php echo $_POST['q49_exchangeOf49']; ?></b>
+                        <?php else: ?>
+                            <input type="text" id="input_49" name="q49_exchangeOf49" data-type="input-textbox"
+                                class="form-textbox" data-defaultvalue="Exchange of Records Form - EN" style="width:310px"
+                                size="310" value="Exchange of Records Form - EN" data-component="textbox"
+                                aria-labelledby="label_49">
+                        <?php endif; ?>        
                     </div>
                 </li>
                 <li id="cid_3" class="form-input-wide" data-type="control_head">
@@ -54,9 +54,13 @@ get_header();
                         </span>
                     </label>
                     <div id="cid_5" class="form-input-wide jf-required" data-layout="half">
-                        <input type="text" id="input_5" name="q5_patientFull" data-type="input-textbox"
-                            class="form-textbox validate[required]" data-defaultvalue="" style="width:310px" size="310"
-                            value="" data-component="textbox" aria-labelledby="label_5" required="">
+                        <?php if (!empty($_POST['q5_patientFull'])): ?>
+                            <b><?php echo $_POST['q5_patientFull']; ?></b>
+                        <?php else: ?>
+                            <input type="text" id="input_5" name="q5_patientFull" data-type="input-textbox"
+                                class="form-textbox validate[required]" data-defaultvalue="" style="width:310px" size="310"
+                                value="" data-component="textbox" aria-labelledby="label_5" required="">
+                        <?php endif; ?>     
                     </div>
                 </li>
                 <li class="form-line form-line-column form-col-2 jf-required" data-type="control_email" id="id_52">
@@ -68,12 +72,16 @@ get_header();
                     </label>
                     <div id="cid_52" class="form-input-wide jf-required" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="email" id="input_52" name="q52_email"
-                                class="form-textbox validate[required, Email]" data-defaultvalue="" style="width:310px"
-                                size="310" value="" data-component="email" aria-labelledby="label_52 sublabel_input_52"
-                                required="">
-                            <label class="form-sub-label" for="input_52" id="sublabel_input_52" style="min-height:13px"
-                                aria-hidden="false"> example@example.com </label>
+                            <?php if (!empty($_POST['q52_email'])): ?>
+                                <b><?php echo $_POST['q52_email']; ?></b>
+                            <?php else: ?>
+                                <input type="email" id="input_52" name="q52_email"
+                                    class="form-textbox validate[required, Email]" data-defaultvalue="" style="width:310px"
+                                    size="310" value="" data-component="email" aria-labelledby="label_52 sublabel_input_52"
+                                    required="">
+                                <label class="form-sub-label" for="input_52" id="sublabel_input_52" style="min-height:13px"
+                                    aria-hidden="false"> example@example.com </label>
+                            <?php endif; ?>     
                         </span>
                     </div>
                 </li>
@@ -107,16 +115,23 @@ get_header();
                                         aria-labelledby="label_6 sublabel_6_year"> <label class="form-sub-label"
                                         for="year_6" id="sublabel_6_year" style="min-height:13px"
                                         aria-hidden="false">Year</label></span></div><span
-                                class="form-sub-label-container" style="vertical-align:top"><input type="text"
-                                    class="form-textbox validate[required, limitDate, validateLiteDate]"
-                                    id="lite_mode_6" size="12" data-maxlength="12" data-age="" value="" required=""
-                                    data-format="mmddyyyy" data-seperator="-" placeholder="MM-DD-YYYY"
-                                    autocomplete="section-input_6 off" aria-labelledby="label_6 sublabel_6_litemode"
-                                    inputmode="numeric"><img class=" newDefaultTheme-dateIcon icon-liteMode"
-                                    alt="Pick a Date" id="input_6_pick" src="./Intake Form - EN_files/calendar.png"
-                                    data-component="datetime" aria-hidden="true" data-allow-time="No" data-version="v2">
-                                <label class="form-sub-label" for="lite_mode_6" id="sublabel_6_litemode"
-                                    style="min-height:13px" aria-hidden="false">Date</label></span>
+                                class="form-sub-label-container" style="vertical-align:top">
+                                
+                                <?php if (!empty($_POST['q6_applicationDate'])): ?>
+                                    <b><?php echo $_POST['q6_applicationDate']['month'] . '-' . $_POST['q6_applicationDate']['day'] . '-' . $_POST['q6_applicationDate']['year']; ?></b>
+                                <?php else: ?>
+                                    <input type="text"
+                                        class="form-textbox validate[required, limitDate, validateLiteDate]"
+                                        id="lite_mode_6" size="12" data-maxlength="12" data-age="" value="" required=""
+                                        data-format="mmddyyyy" data-seperator="-" placeholder="MM-DD-YYYY"
+                                        autocomplete="section-input_6 off" aria-labelledby="label_6 sublabel_6_litemode"
+                                        inputmode="numeric">
+                                    <img class=" newDefaultTheme-dateIcon icon-liteMode"
+                                        alt="Pick a Date" id="input_6_pick" src="./Intake Form - EN_files/calendar.png"
+                                        data-component="datetime" aria-hidden="true" data-allow-time="No" data-version="v2">
+                                    <label class="form-sub-label" for="lite_mode_6" id="sublabel_6_litemode"
+                                        style="min-height:13px" aria-hidden="false">Date</label>
+                                <?php endif; ?>
                         </div>
                     </div>
                 </li>
@@ -130,14 +145,18 @@ get_header();
                     </label>
                     <div id="cid_51" class="form-input-wide jf-required" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="tel" id="input_51_full" name="q51_homecellPhone[full]" data-type="mask-number"
-                                class="mask-phone-number form-textbox validate[required, Fill Mask]"
-                                data-defaultvalue="" autocomplete="section-input_51 tel-national" style="width:310px"
-                                data-masked="true" value="" placeholder="(000) 000-0000" data-component="phone"
-                                aria-labelledby="label_51 sublabel_51_masked" required="" inputmode="text"
-                                maskvalue="(###) ###-####">
-                            <label class="form-sub-label" for="input_51_full" id="sublabel_51_masked"
-                                style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                            <?php if (!empty($_POST['q51_homecellPhone']['full'])): ?>
+                                <b><?php echo $_POST['q51_homecellPhone']['full']; ?></b>
+                            <?php else: ?>
+                                <input type="tel" id="input_51_full" name="q51_homecellPhone[full]" data-type="mask-number"
+                                    class="mask-phone-number form-textbox validate[required, Fill Mask]"
+                                    data-defaultvalue="" autocomplete="section-input_51 tel-national" style="width:310px"
+                                    data-masked="true" value="" placeholder="(000) 000-0000" data-component="phone"
+                                    aria-labelledby="label_51 sublabel_51_masked" required="" inputmode="text"
+                                    maskvalue="(###) ###-####">
+                                <label class="form-sub-label" for="input_51_full" id="sublabel_51_masked"
+                                    style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                            <?php endif; ?>   
                         </span>
                     </div>
                 </li>
@@ -147,9 +166,13 @@ get_header();
                         Parent/Guardian Name (if applicable)
                     </label>
                     <div id="cid_7" class="form-input-wide" data-layout="half">
-                        <input type="text" id="input_7" name="q7_yourDoctors7" data-type="input-textbox"
-                            class="form-textbox" data-defaultvalue="" style="width:310px" size="310" value=""
-                            data-component="textbox" aria-labelledby="label_7" required="">
+                        <?php if (!empty($_POST['q7_yourDoctors7'])): ?>
+                            <b><?php echo $_POST['q7_yourDoctors7']; ?></b>
+                        <?php else: ?>
+                            <input type="text" id="input_7" name="q7_yourDoctors7" data-type="input-textbox"
+                                class="form-textbox" data-defaultvalue="" style="width:310px" size="310" value=""
+                                data-component="textbox" aria-labelledby="label_7" required="">
+                        <?php endif; ?>   
                     </div>
                 </li>
                 <li class="form-line" data-type="control_divider" id="id_62">
@@ -167,50 +190,69 @@ get_header();
                     <div id="cid_64" class="form-input-wide" data-layout="full">
                         <div class="form-multiple-column" data-columncount="2" role="group" aria-labelledby="label_64"
                             data-component="checkbox">
+                            <?php echo ( !empty($_POST['q64_name64']) ) ? '<ol>' : ''; ?>
                             <span class="form-checkbox-item">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_0"
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q64_name64']) ): ?>
+                                    <b><?php echo (in_array('Treatment Planning', $_POST['q64_name64'])) ? '<li>My evaluation report (patients OVER 18 years of age)</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_0"
                                     name="q64_name64[]" value="Treatment Planning">
-                                <label id="label_input_64_0" for="input_64_0">My evaluation report (patients OVER 18 years of age)</label>
+                                    <label id="label_input_64_0" for="input_64_0">My evaluation report (patients OVER 18 years of age)</label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_1"
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q64_name64']) ): ?>
+                                    <b><?php echo (in_array('Billing', $_POST['q64_name64'])) ? '<li>My minor child’s evaluation report (patients UNDER 18)</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_1"
                                     name="q64_name64[]" value="Billing">
-                                <label id="label_input_64_1" for="input_64_1">My minor child’s evaluation report (patients UNDER 18)</label>
+                                    <label id="label_input_64_1" for="input_64_1">My minor child’s evaluation report (patients UNDER 18)</label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item" style="clear:left">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_2"
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q64_name64']) ): ?>
+                                    <b><?php echo (in_array('Updates', $_POST['q64_name64'])) ? '<li>My/My child’s therapy records (delays receipt of records as it requires Doctor approval)</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_2"
                                     name="q64_name64[]" value="Updates">
-                                <label id="label_input_64_2" for="input_64_2">My/My child’s therapy records (delays receipt of records as it requires Doctor approval)</label>
+                                    <label id="label_input_64_2" for="input_64_2">My/My child’s therapy records (delays receipt of records as it requires Doctor approval)</label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item" style="clear:left">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_3"
-                                    name="q64_name64[]" value="Updates">
-                                <label id="label_input_64_3" for="input_64_3">Invoices/Billing Records</label>
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q64_name64']) ): ?>
+                                    <b><?php echo (in_array('Updates2', $_POST['q64_name64'])) ? '<li>Invoices/Billing Records</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_3"
+                                    name="q64_name64[]" value="Updates2">
+                                    <label id="label_input_64_3" for="input_64_3">Invoices/Billing Records</label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item formCheckboxOther">
-                                <input type="checkbox" class="form-checkbox-other form-checkbox"
-                                    name="q64_name64[other]" id="other_64" value="other" tabindex="0"
-                                    aria-label="Other">
-                                <label id="label_other_64" style="text-indent:0" for="other_64"> Other </label>
-                                <span id="other_64_input" class="other-input-container is-none">
-                                    <input type="text" class="form-checkbox-other-input form-textbox"
-                                        name="q64_name64[other]" data-otherhint="Other" size="15" id="input_64"
-                                        data-placeholder="Please type another option here"
-                                        placeholder="Please type another option here">
-                                </span>
+                                <?php if (!empty($_POST['q64_name64']['other']) ): ?>
+                                    <b><?php echo '<li>'.$_POST['q64_name64']['other']; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" class="form-checkbox-other form-checkbox"
+                                        name="q64_name64[other]" id="other_64" value="other" tabindex="0"
+                                        aria-label="Other">
+                                    <label id="label_other_64" style="text-indent:0" for="other_64"> Other </label>
+                                    <span id="other_64_input" class="other-input-container is-none">
+                                        <input type="text" class="form-checkbox-other-input form-textbox"
+                                            name="q64_name64[other]" data-otherhint="Other" size="15" id="input_64"
+                                            data-placeholder="Please type another option here"
+                                            placeholder="Please type another option here">
+                                    </span>
+                                <?php endif; ?>
                             </span>
+                            <?php echo ( !empty($_POST['q64_name64']) ) ? '</ol>' : ''; ?>
                         </div>
                     </div>
                 </li>
 
+                <?php if (empty($_POST)): ?>
                 <li class="form-line" data-type="control_button" id="id_2">
                     <div id="cid_2" class="form-input-wide" data-layout="full">
                         <div data-align="auto"
@@ -223,15 +265,13 @@ get_header();
                         </div>
                     </div>
                 </li>
+                <?php endif; ?>
                 <li style="display:none">
                     Should be Empty:
                     <input type="text" name="website" value="">
                 </li>
             </ul>
         </div>
-        <input type="hidden" class="simple_spc" id="simple_spc" name="simple_spc"
-            value="212746288836165-212746288836165">
-        <input type="hidden" name="event_id" value="1681115218817_212746288836165_8rUWRAg">
     </form>
 
 <?php
