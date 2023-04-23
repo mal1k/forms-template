@@ -8,9 +8,8 @@ ob_start();
 get_header();
 ?>
 
-<form class="jotform-form" action="" method="post" name="form_212747077283158" id="212747077283158"
+<form class="jotform-form" action="" method="post"
         accept-charset="utf-8" autocomplete="on" novalidate="true">
-        <input type="hidden" name="formID" value="212747077283158">
         <input type="hidden" id="JWTContainer" value="">
         <input type="hidden" id="cardinalOrderNumber" value="">
         <div role="main" class="form-all">
@@ -33,10 +32,14 @@ get_header();
                     <label class="form-label form-label-top form-label-auto" id="label_49" for="input_49"> Exchange of
                         Records/Release of Information </label>
                     <div id="cid_49" class="form-input-wide always-hidden" data-layout="half">
-                        <input type="text" id="input_49" name="q49_exchangeOf49" data-type="input-textbox"
-                            class="form-textbox" data-defaultvalue="Exchange of Records Form - EN" style="width:310px"
-                            size="310" value="Exchange of Records Form - EN" data-component="textbox"
-                            aria-labelledby="label_49">
+                        <?php if (!empty($_POST['q49_exchangeOf49'])): ?>
+                            <b><?php echo $_POST['q49_exchangeOf49']; ?></b>
+                        <?php else: ?>
+                            <input type="text" id="input_49" name="q49_exchangeOf49" data-type="input-textbox"
+                                class="form-textbox" data-defaultvalue="Exchange of Records Form - EN" style="width:310px"
+                                size="310" value="Exchange of Records Form - EN" data-component="textbox"
+                                aria-labelledby="label_49">
+                        <?php endif; ?>
                     </div>
                 </li>
                 <li id="cid_3" class="form-input-wide" data-type="control_head">
@@ -56,9 +59,13 @@ get_header();
                         </span>
                     </label>
                     <div id="cid_5" class="form-input-wide jf-required" data-layout="half">
-                        <input type="text" id="input_5" name="q5_patientFull" data-type="input-textbox"
-                            class="form-textbox validate[required]" data-defaultvalue="" style="width:310px" size="310"
-                            value="" data-component="textbox" aria-labelledby="label_5" required="">
+                        <?php if (!empty($_POST['q5_patientFull'])): ?>
+                            <b><?php echo $_POST['q5_patientFull']; ?></b>
+                        <?php else: ?>
+                            <input type="text" id="input_5" name="q5_patientFull" data-type="input-textbox"
+                                class="form-textbox validate[required]" data-defaultvalue="" style="width:310px" size="310"
+                                value="" data-component="textbox" aria-labelledby="label_5" required="">
+                        <?php endif; ?>
                     </div>
                 </li>
                 <li class="form-line form-line-column form-col-2 jf-required" data-type="control_datetime" id="id_6">
@@ -103,16 +110,21 @@ get_header();
                                 </span>
                             </div>
                             <span class="form-sub-label-container" style="vertical-align:top">
-                                <input type="text" class="form-textbox validate[required, limitDate, validateLiteDate]"
-                                    id="lite_mode_6" size="12" data-maxlength="12" data-age="" value="" required=""
-                                    data-format="mmddyyyy" data-seperator="-" placeholder="MM-DD-YYYY"
-                                    autocomplete="section-input_6 off" aria-labelledby="label_6 sublabel_6_litemode"
-                                    inputmode="numeric">
-                                <img class=" newDefaultTheme-dateIcon icon-liteMode" alt="Pick a Date" id="input_6_pick"
-                                    src="./img/calendar.png" data-component="datetime" aria-hidden="true"
-                                    data-allow-time="No" data-version="v2">
-                                <label class="form-sub-label" for="lite_mode_6" id="sublabel_6_litemode"
-                                    style="min-height:13px" aria-hidden="false"> Date </label>
+                                <?php if (!empty($_POST['q6_dateOf'])): ?>
+                                    <b><?php echo $_POST['q6_dateOf']['month'] . '-' . $_POST['q6_dateOf']['day'] . '-' . $_POST['q6_dateOf']['year']; ?></b>
+                                <?php else: ?>
+                                    <input type="text" class="form-textbox validate[required, limitDate, validateLiteDate]"
+                                        id="lite_mode_6" size="12" data-maxlength="12" data-age="" value="" required=""
+                                        data-format="mmddyyyy" data-seperator="-" placeholder="MM-DD-YYYY"
+                                        autocomplete="section-input_6 off" aria-labelledby="label_6 sublabel_6_litemode"
+                                        inputmode="numeric">
+                                    <img class=" newDefaultTheme-dateIcon icon-liteMode" alt="Pick a Date" id="input_6_pick"
+                                        src="./img/calendar.png" data-component="datetime" aria-hidden="true"
+                                        data-allow-time="No" data-version="v2">
+                                    <label class="form-sub-label" for="lite_mode_6" id="sublabel_6_litemode"
+                                        style="min-height:13px" aria-hidden="false"> Date </label>
+                                <?php endif; ?>
+
                             </span>
                         </div>
                     </div>
@@ -129,66 +141,86 @@ get_header();
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-street-line jsTest-address-lineField">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_50_addr_line1"
-                                            name="q50_patientAddress[addr_line1]"
-                                            class="form-textbox validate[required] form-address-line"
-                                            data-defaultvalue="" autocomplete="section-input_50 address-line1" value=""
-                                            data-component="address_line_1"
-                                            aria-labelledby="label_50 sublabel_50_addr_line1" required="">
-                                        <label class="form-sub-label" for="input_50_addr_line1"
-                                            id="sublabel_50_addr_line1" style="min-height:13px" aria-hidden="false">
-                                            Street Address </label>
+                                        <?php if (!empty($_POST['q50_patientAddress']['addr_line1'])): ?>
+                                            <b><?php echo $_POST['q50_patientAddress']['addr_line1']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_50_addr_line1"
+                                                name="q50_patientAddress[addr_line1]"
+                                                class="form-textbox validate[required] form-address-line"
+                                                data-defaultvalue="" autocomplete="section-input_50 address-line1" value=""
+                                                data-component="address_line_1"
+                                                aria-labelledby="label_50 sublabel_50_addr_line1" required="">
+                                            <label class="form-sub-label" for="input_50_addr_line1"
+                                                id="sublabel_50_addr_line1" style="min-height:13px" aria-hidden="false">
+                                                Street Address </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-street-line jsTest-address-lineField">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_50_addr_line2"
-                                            name="q50_patientAddress[addr_line2]" class="form-textbox form-address-line"
-                                            data-defaultvalue="" autocomplete="section-input_50 address-line2" value=""
-                                            data-component="address_line_2"
-                                            aria-labelledby="label_50 sublabel_50_addr_line2">
-                                        <label class="form-sub-label" for="input_50_addr_line2"
-                                            id="sublabel_50_addr_line2" style="min-height:13px" aria-hidden="false">
-                                            Street Address Line 2 </label>
+                                        <?php if (!empty($_POST['q50_patientAddress']['addr_line2'])): ?>
+                                            <b><?php echo $_POST['q50_patientAddress']['addr_line2']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_50_addr_line2"
+                                                name="q50_patientAddress[addr_line2]" class="form-textbox form-address-line"
+                                                data-defaultvalue="" autocomplete="section-input_50 address-line2" value=""
+                                                data-component="address_line_2"
+                                                aria-labelledby="label_50 sublabel_50_addr_line2">
+                                            <label class="form-sub-label" for="input_50_addr_line2"
+                                                id="sublabel_50_addr_line2" style="min-height:13px" aria-hidden="false">
+                                                Street Address Line 2 </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-city-line jsTest-address-lineField ">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_50_city" name="q50_patientAddress[city]"
-                                            class="form-textbox validate[required] form-address-city"
-                                            data-defaultvalue="" autocomplete="section-input_50 address-level2" value=""
-                                            data-component="city" aria-labelledby="label_50 sublabel_50_city"
-                                            required="">
-                                        <label class="form-sub-label" for="input_50_city" id="sublabel_50_city"
-                                            style="min-height:13px" aria-hidden="false"> City </label>
+                                        <?php if (!empty($_POST['q50_patientAddress']['city'])): ?>
+                                            <b><?php echo $_POST['q50_patientAddress']['city']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_50_city" name="q50_patientAddress[city]"
+                                                class="form-textbox validate[required] form-address-city"
+                                                data-defaultvalue="" autocomplete="section-input_50 address-level2" value=""
+                                                data-component="city" aria-labelledby="label_50 sublabel_50_city"
+                                                required="">
+                                            <label class="form-sub-label" for="input_50_city" id="sublabel_50_city"
+                                                style="min-height:13px" aria-hidden="false"> City </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                                 <span class="form-address-line form-address-state-line jsTest-address-lineField ">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_50_state" name="q50_patientAddress[state]"
-                                            class="form-textbox validate[required] form-address-state"
-                                            data-defaultvalue="" autocomplete="section-input_50 address-level1" value=""
-                                            data-component="state" aria-labelledby="label_50 sublabel_50_state"
-                                            required="">
-                                        <label class="form-sub-label" for="input_50_state" id="sublabel_50_state"
-                                            style="min-height:13px" aria-hidden="false"> State / Province </label>
+                                        <?php if (!empty($_POST['q50_patientAddress']['state'])): ?>
+                                            <b><?php echo $_POST['q50_patientAddress']['state']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_50_state" name="q50_patientAddress[state]"
+                                                class="form-textbox validate[required] form-address-state"
+                                                data-defaultvalue="" autocomplete="section-input_50 address-level1" value=""
+                                                data-component="state" aria-labelledby="label_50 sublabel_50_state"
+                                                required="">
+                                            <label class="form-sub-label" for="input_50_state" id="sublabel_50_state"
+                                                style="min-height:13px" aria-hidden="false"> State / Province </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-zip-line jsTest-address-lineField ">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_50_postal" name="q50_patientAddress[postal]"
-                                            class="form-textbox validate[required] form-address-postal"
-                                            data-defaultvalue="" autocomplete="section-input_50 postal-code" value=""
-                                            data-component="zip" aria-labelledby="label_50 sublabel_50_postal"
-                                            required="">
-                                        <label class="form-sub-label" for="input_50_postal" id="sublabel_50_postal"
-                                            style="min-height:13px" aria-hidden="false"> Postal / Zip Code </label>
+                                        <?php if (!empty($_POST['q50_patientAddress']['postal'])): ?>
+                                            <b><?php echo $_POST['q50_patientAddress']['postal']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_50_postal" name="q50_patientAddress[postal]"
+                                                class="form-textbox validate[required] form-address-postal"
+                                                data-defaultvalue="" autocomplete="section-input_50 postal-code" value=""
+                                                data-component="zip" aria-labelledby="label_50 sublabel_50_postal"
+                                                required="">
+                                            <label class="form-sub-label" for="input_50_postal" id="sublabel_50_postal"
+                                                style="min-height:13px" aria-hidden="false"> Postal / Zip Code </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
@@ -204,14 +236,20 @@ get_header();
                     </label>
                     <div id="cid_51" class="form-input-wide jf-required" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="tel" id="input_51_full" name="q51_homecellPhone[full]" data-type="mask-number"
-                                class="mask-phone-number form-textbox validate[required, Fill Mask]"
-                                data-defaultvalue="" autocomplete="section-input_51 tel-national" style="width:310px"
-                                data-masked="true" value="" placeholder="(000) 000-0000" data-component="phone"
-                                aria-labelledby="label_51 sublabel_51_masked" required="" inputmode="text"
-                                maskvalue="(###) ###-####">
-                            <label class="form-sub-label" for="input_51_full" id="sublabel_51_masked"
-                                style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                            <?php if (!empty($_POST['q51_homecellPhone']['full'])): ?>
+                                <b><?php echo $_POST['q51_homecellPhone']['full']; ?></b>
+                            <?php else: ?>
+                                <input type="tel" id="input_51_full" name="q51_homecellPhone[full]" data-type="mask-number"
+                                    class="mask-phone-number form-textbox validate[required, Fill Mask]"
+                                    data-defaultvalue="" autocomplete="section-input_51 tel-national" style="width:310px"
+                                    data-masked="true" value="" placeholder="(000) 000-0000" data-component="phone"
+                                    aria-labelledby="label_51 sublabel_51_masked" required="" inputmode="text"
+                                    maskvalue="(###) ###-####">
+                                <?php if (empty($_POST)){ ?>
+                                <label class="form-sub-label" for="input_51_full" id="sublabel_51_masked"
+                                    style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                                <?php } ?>
+                            <?php endif; ?>
                         </span>
                     </div>
                 </li>
@@ -224,12 +262,16 @@ get_header();
                     </label>
                     <div id="cid_52" class="form-input-wide jf-required" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="email" id="input_52" name="q52_email"
-                                class="form-textbox validate[required, Email]" data-defaultvalue="" style="width:310px"
-                                size="310" value="" data-component="email" aria-labelledby="label_52 sublabel_input_52"
-                                required="">
-                            <label class="form-sub-label" for="input_52" id="sublabel_input_52" style="min-height:13px"
-                                aria-hidden="false"> example@example.com </label>
+                            <?php if (!empty($_POST['q52_email'])): ?>
+                                <b><?php echo $_POST['q52_email']; ?></b>
+                            <?php else: ?>
+                                <input type="email" id="input_52" name="q52_email"
+                                    class="form-textbox validate[required, Email]" data-defaultvalue="" style="width:310px"
+                                    size="310" value="" data-component="email" aria-labelledby="label_52 sublabel_input_52"
+                                    required="">
+                                <label class="form-sub-label" for="input_52" id="sublabel_input_52" style="min-height:13px"
+                                    aria-hidden="false"> example@example.com </label>
+                            <?php endif; ?>
                         </span>
                     </div>
                 </li>
@@ -251,9 +293,13 @@ get_header();
                         </span>
                     </label>
                     <div id="cid_7" class="form-input-wide jf-required" data-layout="half">
-                        <input type="text" id="input_7" name="q7_yourDoctors7" data-type="input-textbox"
-                            class="form-textbox validate[required]" data-defaultvalue="" style="width:310px" size="310"
-                            value="" data-component="textbox" aria-labelledby="label_7" required="">
+                        <?php if (!empty($_POST['q7_yourDoctors7'])): ?>
+                            <b><?php echo $_POST['q7_yourDoctors7']; ?></b>
+                        <?php else: ?>
+                            <input type="text" id="input_7" name="q7_yourDoctors7" data-type="input-textbox"
+                                class="form-textbox validate[required]" data-defaultvalue="" style="width:310px" size="310"
+                                value="" data-component="textbox" aria-labelledby="label_7" required="">
+                        <?php endif; ?>
                     </div>
                 </li>
                 <li class="form-line" data-type="control_divider" id="id_62">
@@ -285,18 +331,26 @@ get_header();
                         </span>
                     </label>
                     <div id="cid_8" class="form-input-wide jf-required" data-layout="half">
-                        <input type="text" id="input_8" name="q8_businessfacilityOr8" data-type="input-textbox"
-                            class="form-textbox validate[required]" data-defaultvalue="" style="width:310px" size="310"
-                            value="" data-component="textbox" aria-labelledby="label_8" required="">
+                        <?php if (!empty($_POST['q8_businessfacilityOr8'])): ?>
+                            <b><?php echo $_POST['q8_businessfacilityOr8']; ?></b>
+                        <?php else: ?>
+                            <input type="text" id="input_8" name="q8_businessfacilityOr8" data-type="input-textbox"
+                                class="form-textbox validate[required]" data-defaultvalue="" style="width:310px" size="310"
+                                value="" data-component="textbox" aria-labelledby="label_8" required="">
+                        <?php endif; ?>
                     </div>
                 </li>
                 <li class="form-line form-line-column form-col-2" data-type="control_textbox" id="id_55">
                     <label class="form-label form-label-top" id="label_55" for="input_55"> Business/Facility or
                         Individual's Name #2 </label>
                     <div id="cid_55" class="form-input-wide" data-layout="half">
-                        <input type="text" id="input_55" name="q55_businessfacilityOr" data-type="input-textbox"
-                            class="form-textbox" data-defaultvalue="" style="width:310px" size="310" value=""
-                            data-component="textbox" aria-labelledby="label_55">
+                        <?php if (!empty($_POST['q55_businessfacilityOr'])): ?>
+                            <b><?php echo $_POST['q55_businessfacilityOr']; ?></b>
+                        <?php else: ?>
+                            <input type="text" id="input_55" name="q55_businessfacilityOr" data-type="input-textbox"
+                                class="form-textbox" data-defaultvalue="" style="width:310px" size="310" value=""
+                                data-component="textbox" aria-labelledby="label_55">
+                        <?php endif; ?>
                     </div>
                 </li>
                 <li class="form-line form-line-column form-col-3 jf-required" data-type="control_phone" id="id_56">
@@ -308,14 +362,20 @@ get_header();
                     </label>
                     <div id="cid_56" class="form-input-wide jf-required" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="tel" id="input_56_full" name="q56_phoneNumber[full]" data-type="mask-number"
-                                class="mask-phone-number form-textbox validate[required, Fill Mask]"
-                                data-defaultvalue="" autocomplete="section-input_56 tel-national" style="width:310px"
-                                data-masked="true" value="" placeholder="(000) 000-0000" data-component="phone"
-                                aria-labelledby="label_56 sublabel_56_masked" required="" inputmode="text"
-                                maskvalue="(###) ###-####">
-                            <label class="form-sub-label" for="input_56_full" id="sublabel_56_masked"
-                                style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                            <?php if (!empty($_POST['q56_phoneNumber']['full'])): ?>
+                                <b><?php echo $_POST['q56_phoneNumber']['full']; ?></b>
+                            <?php else: ?>
+                                <input type="tel" id="input_56_full" name="q56_phoneNumber[full]" data-type="mask-number"
+                                    class="mask-phone-number form-textbox validate[required, Fill Mask]"
+                                    data-defaultvalue="" autocomplete="section-input_56 tel-national" style="width:310px"
+                                    data-masked="true" value="" placeholder="(000) 000-0000" data-component="phone"
+                                    aria-labelledby="label_56 sublabel_56_masked" required="" inputmode="text"
+                                    maskvalue="(###) ###-####">
+                                <?php if (empty($_POST)){ ?>
+                                <label class="form-sub-label" for="input_56_full" id="sublabel_56_masked"
+                                    style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                                <?php } ?>
+                            <?php endif; ?>
                         </span>
                     </div>
                 </li>
@@ -323,14 +383,20 @@ get_header();
                     <label class="form-label form-label-top" id="label_57" for="input_57_full"> Phone Number </label>
                     <div id="cid_57" class="form-input-wide" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="tel" id="input_57_full" name="q57_phoneNumber57[full]" data-type="mask-number"
-                                class="mask-phone-number form-textbox validate[Fill Mask]" data-defaultvalue=""
-                                autocomplete="section-input_57 tel-national" style="width:310px" data-masked="true"
-                                value="" placeholder="(000) 000-0000" data-component="phone"
-                                aria-labelledby="label_57 sublabel_57_masked" inputmode="text"
-                                maskvalue="(###) ###-####">
-                            <label class="form-sub-label" for="input_57_full" id="sublabel_57_masked"
-                                style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                            <?php if (!empty($_POST['q57_phoneNumber57']['full'])): ?>
+                                <b><?php echo $_POST['q57_phoneNumber57']['full']; ?></b>
+                            <?php else: ?>
+                                <input type="tel" id="input_57_full" name="q57_phoneNumber57[full]" data-type="mask-number"
+                                    class="mask-phone-number form-textbox validate[Fill Mask]" data-defaultvalue=""
+                                    autocomplete="section-input_57 tel-national" style="width:310px" data-masked="true"
+                                    value="" placeholder="(000) 000-0000" data-component="phone"
+                                    aria-labelledby="label_57 sublabel_57_masked" inputmode="text"
+                                    maskvalue="(###) ###-####">
+                                <?php if (empty($_POST)){ ?>
+                                <label class="form-sub-label" for="input_57_full" id="sublabel_57_masked"
+                                    style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                                <?php } ?>
+                            <?php endif; ?>
                         </span>
                     </div>
                 </li>
@@ -338,14 +404,20 @@ get_header();
                     <label class="form-label form-label-top" id="label_58" for="input_58_full"> Fax Number </label>
                     <div id="cid_58" class="form-input-wide" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="tel" id="input_58_full" name="q58_faxNumber[full]" data-type="mask-number"
-                                class="mask-phone-number form-textbox validate[Fill Mask]" data-defaultvalue=""
-                                autocomplete="section-input_58 tel-national" style="width:310px" data-masked="true"
-                                value="" placeholder="(000) 000-0000" data-component="phone"
-                                aria-labelledby="label_58 sublabel_58_masked" inputmode="text"
-                                maskvalue="(###) ###-####">
-                            <label class="form-sub-label" for="input_58_full" id="sublabel_58_masked"
-                                style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                            <?php if (!empty($_POST['q58_faxNumber']['full'])): ?>
+                                <b><?php echo $_POST['q58_faxNumber']['full']; ?></b>
+                            <?php else: ?>
+                                <input type="tel" id="input_58_full" name="q58_faxNumber[full]" data-type="mask-number"
+                                    class="mask-phone-number form-textbox validate[Fill Mask]" data-defaultvalue=""
+                                    autocomplete="section-input_58 tel-national" style="width:310px" data-masked="true"
+                                    value="" placeholder="(000) 000-0000" data-component="phone"
+                                    aria-labelledby="label_58 sublabel_58_masked" inputmode="text"
+                                    maskvalue="(###) ###-####">
+                                <?php if (empty($_POST)){ ?>
+                                <label class="form-sub-label" for="input_58_full" id="sublabel_58_masked"
+                                    style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                                <?php } ?>
+                            <?php endif; ?>
                         </span>
                     </div>
                 </li>
@@ -353,14 +425,20 @@ get_header();
                     <label class="form-label form-label-top" id="label_59" for="input_59_full"> Fax Number </label>
                     <div id="cid_59" class="form-input-wide" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="tel" id="input_59_full" name="q59_faxNumber59[full]" data-type="mask-number"
-                                class="mask-phone-number form-textbox validate[Fill Mask]" data-defaultvalue=""
-                                autocomplete="section-input_59 tel-national" style="width:310px" data-masked="true"
-                                value="" placeholder="(000) 000-0000" data-component="phone"
-                                aria-labelledby="label_59 sublabel_59_masked" inputmode="text"
-                                maskvalue="(###) ###-####">
-                            <label class="form-sub-label" for="input_59_full" id="sublabel_59_masked"
-                                style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                            <?php if (!empty($_POST['q59_faxNumber59']['full'])): ?>
+                                <b><?php echo $_POST['q59_faxNumber59']['full']; ?></b>
+                            <?php else: ?>
+                                <input type="tel" id="input_59_full" name="q59_faxNumber59[full]" data-type="mask-number"
+                                    class="mask-phone-number form-textbox validate[Fill Mask]" data-defaultvalue=""
+                                    autocomplete="section-input_59 tel-national" style="width:310px" data-masked="true"
+                                    value="" placeholder="(000) 000-0000" data-component="phone"
+                                    aria-labelledby="label_59 sublabel_59_masked" inputmode="text"
+                                    maskvalue="(###) ###-####">
+                                <?php if (empty($_POST)){ ?>
+                                <label class="form-sub-label" for="input_59_full" id="sublabel_59_masked"
+                                    style="min-height:13px" aria-hidden="false"> Please enter a valid phone number. </label>
+                                <?php } ?>
+                            <?php endif; ?>
                         </span>
                     </div>
                 </li>
@@ -376,65 +454,85 @@ get_header();
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-street-line jsTest-address-lineField">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_60_addr_line1" name="q60_address[addr_line1]"
-                                            class="form-textbox validate[required] form-address-line"
-                                            data-defaultvalue="" autocomplete="section-input_60 address-line1" value=""
-                                            data-component="address_line_1"
-                                            aria-labelledby="label_60 sublabel_60_addr_line1" required="">
-                                        <label class="form-sub-label" for="input_60_addr_line1"
-                                            id="sublabel_60_addr_line1" style="min-height:13px" aria-hidden="false">
-                                            Street Address </label>
+                                        <?php if (!empty($_POST['q60_address']['addr_line1'])): ?>
+                                            <b><?php echo $_POST['q60_address']['addr_line1']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_60_addr_line1" name="q60_address[addr_line1]"
+                                                class="form-textbox validate[required] form-address-line"
+                                                data-defaultvalue="" autocomplete="section-input_60 address-line1" value=""
+                                                data-component="address_line_1"
+                                                aria-labelledby="label_60 sublabel_60_addr_line1" required="">
+                                            <label class="form-sub-label" for="input_60_addr_line1"
+                                                id="sublabel_60_addr_line1" style="min-height:13px" aria-hidden="false">
+                                                Street Address </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-street-line jsTest-address-lineField">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_60_addr_line2" name="q60_address[addr_line2]"
-                                            class="form-textbox form-address-line" data-defaultvalue=""
-                                            autocomplete="section-input_60 address-line2" value=""
-                                            data-component="address_line_2"
-                                            aria-labelledby="label_60 sublabel_60_addr_line2">
-                                        <label class="form-sub-label" for="input_60_addr_line2"
-                                            id="sublabel_60_addr_line2" style="min-height:13px" aria-hidden="false">
-                                            Street Address Line 2 </label>
+                                        <?php if (!empty($_POST['q60_address']['addr_line2'])): ?>
+                                            <b><?php echo $_POST['q60_address']['addr_line2']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_60_addr_line2" name="q60_address[addr_line2]"
+                                                class="form-textbox form-address-line" data-defaultvalue=""
+                                                autocomplete="section-input_60 address-line2" value=""
+                                                data-component="address_line_2"
+                                                aria-labelledby="label_60 sublabel_60_addr_line2">
+                                            <label class="form-sub-label" for="input_60_addr_line2"
+                                                id="sublabel_60_addr_line2" style="min-height:13px" aria-hidden="false">
+                                                Street Address Line 2 </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-city-line jsTest-address-lineField ">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_60_city" name="q60_address[city]"
-                                            class="form-textbox validate[required] form-address-city"
-                                            data-defaultvalue="" autocomplete="section-input_60 address-level2" value=""
-                                            data-component="city" aria-labelledby="label_60 sublabel_60_city"
-                                            required="">
-                                        <label class="form-sub-label" for="input_60_city" id="sublabel_60_city"
-                                            style="min-height:13px" aria-hidden="false"> City </label>
+                                        <?php if (!empty($_POST['q60_address']['city'])): ?>
+                                            <b><?php echo $_POST['q60_address']['city']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_60_city" name="q60_address[city]"
+                                                class="form-textbox validate[required] form-address-city"
+                                                data-defaultvalue="" autocomplete="section-input_60 address-level2" value=""
+                                                data-component="city" aria-labelledby="label_60 sublabel_60_city"
+                                                required="">
+                                            <label class="form-sub-label" for="input_60_city" id="sublabel_60_city"
+                                                style="min-height:13px" aria-hidden="false"> City </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                                 <span class="form-address-line form-address-state-line jsTest-address-lineField ">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_60_state" name="q60_address[state]"
-                                            class="form-textbox validate[required] form-address-state"
-                                            data-defaultvalue="" autocomplete="section-input_60 address-level1" value=""
-                                            data-component="state" aria-labelledby="label_60 sublabel_60_state"
-                                            required="">
-                                        <label class="form-sub-label" for="input_60_state" id="sublabel_60_state"
-                                            style="min-height:13px" aria-hidden="false"> State / Province </label>
+                                        <?php if (!empty($_POST['q60_address']['state'])): ?>
+                                            <b><?php echo $_POST['q60_address']['state']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_60_state" name="q60_address[state]"
+                                                class="form-textbox validate[required] form-address-state"
+                                                data-defaultvalue="" autocomplete="section-input_60 address-level1" value=""
+                                                data-component="state" aria-labelledby="label_60 sublabel_60_state"
+                                                required="">
+                                            <label class="form-sub-label" for="input_60_state" id="sublabel_60_state"
+                                                style="min-height:13px" aria-hidden="false"> State / Province </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-zip-line jsTest-address-lineField ">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_60_postal" name="q60_address[postal]"
-                                            class="form-textbox validate[required] form-address-postal"
-                                            data-defaultvalue="" autocomplete="section-input_60 postal-code" value=""
-                                            data-component="zip" aria-labelledby="label_60 sublabel_60_postal"
-                                            required="">
-                                        <label class="form-sub-label" for="input_60_postal" id="sublabel_60_postal"
-                                            style="min-height:13px" aria-hidden="false"> Postal / Zip Code </label>
+                                        <?php if (!empty($_POST['q60_address']['postal'])): ?>
+                                            <b><?php echo $_POST['q60_address']['postal']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_60_postal" name="q60_address[postal]"
+                                                class="form-textbox validate[required] form-address-postal"
+                                                data-defaultvalue="" autocomplete="section-input_60 postal-code" value=""
+                                                data-component="zip" aria-labelledby="label_60 sublabel_60_postal"
+                                                required="">
+                                            <label class="form-sub-label" for="input_60_postal" id="sublabel_60_postal"
+                                                style="min-height:13px" aria-hidden="false"> Postal / Zip Code </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
@@ -448,64 +546,84 @@ get_header();
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-street-line jsTest-address-lineField">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_61_addr_line1" name="q61_address61[addr_line1]"
-                                            class="form-textbox form-address-line" data-defaultvalue=""
-                                            autocomplete="section-input_61 address-line1" value=""
-                                            data-component="address_line_1"
-                                            aria-labelledby="label_61 sublabel_61_addr_line1" required="">
-                                        <label class="form-sub-label" for="input_61_addr_line1"
-                                            id="sublabel_61_addr_line1" style="min-height:13px" aria-hidden="false">
-                                            Street Address </label>
+                                        <?php if (!empty($_POST['q61_address61']['addr_line1'])): ?>
+                                            <b><?php echo $_POST['q61_address61']['addr_line1']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_61_addr_line1" name="q61_address61[addr_line1]"
+                                                class="form-textbox form-address-line" data-defaultvalue=""
+                                                autocomplete="section-input_61 address-line1" value=""
+                                                data-component="address_line_1"
+                                                aria-labelledby="label_61 sublabel_61_addr_line1" required="">
+                                            <label class="form-sub-label" for="input_61_addr_line1"
+                                                id="sublabel_61_addr_line1" style="min-height:13px" aria-hidden="false">
+                                                Street Address </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-street-line jsTest-address-lineField">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_61_addr_line2" name="q61_address61[addr_line2]"
-                                            class="form-textbox form-address-line" data-defaultvalue=""
-                                            autocomplete="section-input_61 address-line2" value=""
-                                            data-component="address_line_2"
-                                            aria-labelledby="label_61 sublabel_61_addr_line2">
-                                        <label class="form-sub-label" for="input_61_addr_line2"
-                                            id="sublabel_61_addr_line2" style="min-height:13px" aria-hidden="false">
-                                            Street Address Line 2 </label>
+                                        <?php if (!empty($_POST['q61_address61']['addr_line2'])): ?>
+                                            <b><?php echo $_POST['q61_address61']['addr_line2']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_61_addr_line2" name="q61_address61[addr_line2]"
+                                                class="form-textbox form-address-line" data-defaultvalue=""
+                                                autocomplete="section-input_61 address-line2" value=""
+                                                data-component="address_line_2"
+                                                aria-labelledby="label_61 sublabel_61_addr_line2">
+                                            <label class="form-sub-label" for="input_61_addr_line2"
+                                                id="sublabel_61_addr_line2" style="min-height:13px" aria-hidden="false">
+                                                Street Address Line 2 </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-city-line jsTest-address-lineField ">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_61_city" name="q61_address61[city]"
-                                            class="form-textbox form-address-city" data-defaultvalue=""
-                                            autocomplete="section-input_61 address-level2" value=""
-                                            data-component="city" aria-labelledby="label_61 sublabel_61_city"
-                                            required="">
-                                        <label class="form-sub-label" for="input_61_city" id="sublabel_61_city"
-                                            style="min-height:13px" aria-hidden="false"> City </label>
+                                        <?php if (!empty($_POST['q61_address61']['city'])): ?>
+                                            <b><?php echo $_POST['q61_address61']['city']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_61_city" name="q61_address61[city]"
+                                                class="form-textbox form-address-city" data-defaultvalue=""
+                                                autocomplete="section-input_61 address-level2" value=""
+                                                data-component="city" aria-labelledby="label_61 sublabel_61_city"
+                                                required="">
+                                            <label class="form-sub-label" for="input_61_city" id="sublabel_61_city"
+                                                style="min-height:13px" aria-hidden="false"> City </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                                 <span class="form-address-line form-address-state-line jsTest-address-lineField ">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_61_state" name="q61_address61[state]"
-                                            class="form-textbox form-address-state" data-defaultvalue=""
-                                            autocomplete="section-input_61 address-level1" value=""
-                                            data-component="state" aria-labelledby="label_61 sublabel_61_state"
-                                            required="">
-                                        <label class="form-sub-label" for="input_61_state" id="sublabel_61_state"
-                                            style="min-height:13px" aria-hidden="false"> State / Province </label>
+                                        <?php if (!empty($_POST['q61_address61']['city'])): ?>
+                                            <b><?php echo $_POST['q61_address61']['city']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_61_state" name="q61_address61[city]"
+                                                class="form-textbox form-address-state" data-defaultvalue=""
+                                                autocomplete="section-input_61 address-level1" value=""
+                                                data-component="state" aria-labelledby="label_61 sublabel_61_state"
+                                                required="">
+                                            <label class="form-sub-label" for="input_61_state" id="sublabel_61_state"
+                                                style="min-height:13px" aria-hidden="false"> State / Province </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
                             <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
                                 <span class="form-address-line form-address-zip-line jsTest-address-lineField ">
                                     <span class="form-sub-label-container" style="vertical-align:top">
-                                        <input type="text" id="input_61_postal" name="q61_address61[postal]"
-                                            class="form-textbox form-address-postal" data-defaultvalue=""
-                                            autocomplete="section-input_61 postal-code" value="" data-component="zip"
-                                            aria-labelledby="label_61 sublabel_61_postal" required="">
-                                        <label class="form-sub-label" for="input_61_postal" id="sublabel_61_postal"
-                                            style="min-height:13px" aria-hidden="false"> Postal / Zip Code </label>
+                                        <?php if (!empty($_POST['q61_address61']['postal'])): ?>
+                                            <b><?php echo $_POST['q61_address61']['postal']; ?></b>
+                                        <?php else: ?>
+                                            <input type="text" id="input_61_postal" name="q61_address61[postal]"
+                                                class="form-textbox form-address-postal" data-defaultvalue=""
+                                                autocomplete="section-input_61 postal-code" value="" data-component="zip"
+                                                aria-labelledby="label_61 sublabel_61_postal" required="">
+                                            <label class="form-sub-label" for="input_61_postal" id="sublabel_61_postal"
+                                                style="min-height:13px" aria-hidden="false"> Postal / Zip Code </label>
+                                        <?php endif; ?>
                                     </span>
                                 </span>
                             </div>
@@ -518,49 +636,69 @@ get_header();
                     <div id="cid_45" class="form-input-wide" data-layout="full">
                         <div class="form-multiple-column" data-columncount="2" role="group" aria-labelledby="label_45"
                             data-component="checkbox">
+                            <?php echo (!empty($_POST['q45_name45'])) ? '<ol>' : ''; ?>
                             <span class="form-checkbox-item">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_0"
-                                    name="q45_name45[]" value="Assessment Results">
-                                <label id="label_input_45_0" for="input_45_0"> Assessment Results </label>
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q45_name45']) ): ?>
+                                    <b><?php echo (in_array('Assessment Results', $_POST['q45_name45'])) ? '<li>Assessment Results</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_0"
+                                        name="q45_name45[]" value="Assessment Results">
+                                    <label id="label_input_45_0" for="input_45_0"> Assessment Results </label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_1"
-                                    name="q45_name45[]" value="Evaluation Report">
-                                <label id="label_input_45_1" for="input_45_1"> Evaluation Report </label>
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q45_name45']) ): ?>
+                                    <b><?php echo (in_array('Evaluation Report', $_POST['q45_name45'])) ? '<li>Evaluation Report</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_1"
+                                        name="q45_name45[]" value="Evaluation Report">
+                                    <label id="label_input_45_1" for="input_45_1"> Evaluation Report </label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item" style="clear:left">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_2"
-                                    name="q45_name45[]" value="Diagnostic Information">
-                                <label id="label_input_45_2" for="input_45_2"> Diagnostic Information </label>
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q45_name45']) ): ?>
+                                    <b><?php echo (in_array('Diagnostic Information', $_POST['q45_name45'])) ? '<li>Diagnostic Information</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_2"
+                                        name="q45_name45[]" value="Diagnostic Information">
+                                    <label id="label_input_45_2" for="input_45_2"> Diagnostic Information </label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_3"
-                                    name="q45_name45[]" value="Summary of Therapy Sessions">
-                                <label id="label_input_45_3" for="input_45_3"> Summary of Therapy Sessions </label>
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q45_name45']) ): ?>
+                                    <b><?php echo (in_array('Summary of Therapy Sessions', $_POST['q45_name45'])) ? '<li>Summary of Therapy Sessions</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_3"
+                                        name="q45_name45[]" value="Summary of Therapy Sessions">
+                                    <label id="label_input_45_3" for="input_45_3"> Summary of Therapy Sessions </label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item" style="clear:left">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_4"
-                                    name="q45_name45[]" value="Summary of Clinical Findings">
-                                <label id="label_input_45_4" for="input_45_4"> Summary of Clinical Findings </label>
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q45_name45']) ): ?>
+                                    <b><?php echo (in_array('Summary of Clinical Findings', $_POST['q45_name45'])) ? '<li>Summary of Clinical Findings</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_4"
+                                        name="q45_name45[]" value="Summary of Clinical Findings">
+                                    <label id="label_input_45_4" for="input_45_4"> Summary of Clinical Findings </label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_5"
-                                    name="q45_name45[]" value="Any and all information necessary">
-                                <label id="label_input_45_5" for="input_45_5"> Any and all information necessary
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q45_name45']) ): ?>
+                                    <b><?php echo (in_array('Any and all information necessary', $_POST['q45_name45'])) ? '<li>Any and all information necessary</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_45" class="form-checkbox" id="input_45_5"
+                                        name="q45_name45[]" value="Any and all information necessary">
+                                    <label id="label_input_45_5" for="input_45_5"> Any and all information necessary
+                                <?php endif; ?>
                                 </label>
                             </span>
+                            <?php echo (!empty($_POST['q45_name45'])) ? '</ol>' : ''; ?>
                         </div>
                     </div>
                 </li>
@@ -570,39 +708,57 @@ get_header();
                     <div id="cid_64" class="form-input-wide" data-layout="full">
                         <div class="form-multiple-column" data-columncount="2" role="group" aria-labelledby="label_64"
                             data-component="checkbox">
+                            <?php echo (!empty($_POST['q64_name64'])) ? '<ol>' : ''; ?>
                             <span class="form-checkbox-item">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_0"
-                                    name="q64_name64[]" value="Treatment Planning">
-                                <label id="label_input_64_0" for="input_64_0"> Treatment Planning </label>
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q64_name64'] )): ?>
+                                    <b><?php echo (in_array('Treatment Planning', $_POST['q64_name64'])) ? '<li>Treatment Planning</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_0"
+                                        name="q64_name64[]" value="Treatment Planning">
+                                    <label id="label_input_64_0" for="input_64_0"> Treatment Planning </label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_1"
-                                    name="q64_name64[]" value="Billing">
-                                <label id="label_input_64_1" for="input_64_1"> Billing </label>
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q64_name64'] )): ?>
+                                    <b><?php echo (in_array('Billing', $_POST['q64_name64'])) ? '<li>Billing</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_1"
+                                        name="q64_name64[]" value="Billing">
+                                    <label id="label_input_64_1" for="input_64_1"> Billing </label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item" style="clear:left">
-                                <span class="dragger-item">
-                                </span>
-                                <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_2"
-                                    name="q64_name64[]" value="Updates">
-                                <label id="label_input_64_2" for="input_64_2"> Updates </label>
+                                <span class="dragger-item"></span>
+                                <?php if (!empty($_POST['q64_name64'] )): ?>
+                                    <b><?php echo (in_array('Updates', $_POST['q64_name64'])) ? '<li>Updates</li>' : ''; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" aria-describedby="label_64" class="form-checkbox" id="input_64_2"
+                                        name="q64_name64[]" value="Updates">
+                                    <label id="label_input_64_2" for="input_64_2"> Updates </label>
+                                <?php endif; ?>
                             </span>
                             <span class="form-checkbox-item formCheckboxOther">
-                                <input type="checkbox" class="form-checkbox-other form-checkbox"
-                                    name="q64_name64[other]" id="other_64" value="other" tabindex="0"
-                                    aria-label="Other">
-                                <label id="label_other_64" style="text-indent:0" for="other_64"> Other </label>
+                                <?php if (!empty($_POST['q64_name64']['other']) ): ?>
+                                    <b><?php echo '<li>'.$_POST['q64_name64']['other']; ?></b>
+                                <?php else: ?>
+                                    <input type="checkbox" class="form-checkbox-other form-checkbox"
+                                        name="q64_name64[other]" id="other_64" value="other" tabindex="0" aria-label="Other">
+                                    <label id="label_other_64" style="text-indent:0" for="other_64"> Other </label>
+                                <?php endif; ?>
                                 <span id="other_64_input" class="other-input-container is-none">
-                                    <input type="text" class="form-checkbox-other-input form-textbox"
-                                        name="q64_name64[other]" data-otherhint="Other" size="15" id="input_64"
-                                        data-placeholder="Please type another option here"
-                                        placeholder="Please type another option here">
+                                    <?php if (!empty($_POST['q64_name64']['other'])): ?>
+                                        <b><?php echo '(' . $_POST['q64_name64']['other'] . ').</li>'; ?></b>
+                                    <?php else: ?>
+                                        <input type="text" class="form-checkbox-other-input form-textbox"
+                                            name="q64_name64[other]" data-otherhint="Other" size="15" id="input_64"
+                                            data-placeholder="Please type another option here"
+                                            placeholder="Please type another option here">
+                                    <?php endif; ?>
                                 </span>
                             </span>
+                            <?php echo (!empty($_POST['q64_name64'])) ? '</ol>' : ''; ?>
                         </div>
                     </div>
                 </li>
@@ -656,16 +812,20 @@ get_header();
                                 </span>
                             </div>
                             <span class="form-sub-label-container" style="vertical-align:top">
-                                <input type="text" class="form-textbox validate[required, limitDate, validateLiteDate]"
-                                    id="lite_mode_66" size="12" data-maxlength="12" data-age="" value="" required=""
-                                    data-format="mmddyyyy" data-seperator="-" placeholder="MM-DD-YYYY"
-                                    autocomplete="section-input_66 off" aria-labelledby="label_66 sublabel_66_litemode"
-                                    inputmode="numeric">
-                                <img class=" newDefaultTheme-dateIcon icon-liteMode" alt="Pick a Date"
-                                    id="input_66_pick" src="./img/calendar.png" data-component="datetime"
-                                    aria-hidden="true" data-allow-time="No" data-version="v2">
-                                <label class="form-sub-label" for="lite_mode_66" id="sublabel_66_litemode"
-                                    style="min-height:13px" aria-hidden="false"> Date </label>
+                                <?php if (!empty($_POST['q66_date'])): ?>
+                                    <b><?php echo $_POST['q66_date']['month'] . '-' . $_POST['q66_date']['day'] . '-' . $_POST['q66_date']['year']; ?></b>
+                                <?php else: ?>
+                                    <input type="text" class="form-textbox validate[required, limitDate, validateLiteDate]"
+                                        id="lite_mode_66" size="12" data-maxlength="12" data-age="" value="" required=""
+                                        data-format="mmddyyyy" data-seperator="-" placeholder="MM-DD-YYYY"
+                                        autocomplete="section-input_66 off" aria-labelledby="label_66 sublabel_66_litemode"
+                                        inputmode="numeric">
+                                    <img class=" newDefaultTheme-dateIcon icon-liteMode" alt="Pick a Date"
+                                        id="input_66_pick" src="./img/calendar.png" data-component="datetime"
+                                        aria-hidden="true" data-allow-time="No" data-version="v2">
+                                    <label class="form-sub-label" for="lite_mode_66" id="sublabel_66_litemode"
+                                        style="min-height:13px" aria-hidden="false"> Date </label>
+                                <?php endif; ?>       
                             </span>
                         </div>
                     </div>
@@ -770,16 +930,20 @@ get_header();
                                 </span>
                             </div>
                             <span class="form-sub-label-container" style="vertical-align:top">
-                                <input type="text" class="form-textbox validate[required, limitDate, validateLiteDate]"
-                                    id="lite_mode_69" size="12" data-maxlength="12" data-age="" value="" required=""
-                                    data-format="mmddyyyy" data-seperator="-" placeholder="MM-DD-YYYY"
-                                    autocomplete="section-input_69 off" aria-labelledby="label_69 sublabel_69_litemode"
-                                    inputmode="numeric">
-                                <img class=" newDefaultTheme-dateIcon icon-liteMode" alt="Pick a Date"
-                                    id="input_69_pick" src="./img/calendar.png" data-component="datetime"
-                                    aria-hidden="true" data-allow-time="No" data-version="v2">
-                                <label class="form-sub-label" for="lite_mode_69" id="sublabel_69_litemode"
-                                    style="min-height:13px" aria-hidden="false"> Date </label>
+                                <?php if (!empty($_POST['q69_date69'])): ?>
+                                    <b><?php echo $_POST['q69_date69']['month'] . '-' . $_POST['q69_date69']['day'] . '-' . $_POST['q69_date69']['year']; ?></b>
+                                <?php else: ?>
+                                    <input type="text" class="form-textbox validate[required, limitDate, validateLiteDate]"
+                                        id="lite_mode_69" size="12" data-maxlength="12" data-age="" value="" required=""
+                                        data-format="mmddyyyy" data-seperator="-" placeholder="MM-DD-YYYY"
+                                        autocomplete="section-input_69 off" aria-labelledby="label_69 sublabel_69_litemode"
+                                        inputmode="numeric">
+                                    <img class=" newDefaultTheme-dateIcon icon-liteMode" alt="Pick a Date"
+                                        id="input_69_pick" src="./img/calendar.png" data-component="datetime"
+                                        aria-hidden="true" data-allow-time="No" data-version="v2">
+                                    <label class="form-sub-label" for="lite_mode_69" id="sublabel_69_litemode"
+                                        style="min-height:13px" aria-hidden="false"> Date </label>
+                                <?php endif; ?>   
                             </span>
                         </div>
                     </div>
@@ -793,28 +957,20 @@ get_header();
                     </label>
                     <div id="cid_70" class="form-input-wide jf-required" data-layout="half">
                         <span class="form-sub-label-container" style="vertical-align:top">
-                            <input type="text" id="input_70" name="q70_relationshipTo70" data-type="input-textbox"
-                                class="form-textbox validate[required]" data-defaultvalue="" style="width:310px"
-                                size="310" value="" data-component="textbox"
-                                aria-labelledby="label_70 sublabel_input_70" required="">
-                            <label class="form-sub-label" for="input_70" id="sublabel_input_70" style="min-height:13px"
-                                aria-hidden="false"> Put "self" if you are signing your own form </label>
+                            <?php if (!empty($_POST['q70_relationshipTo70'])): ?>
+                                <b><?php echo $_POST['q70_relationshipTo70']; ?></b>
+                            <?php else: ?>
+                                <input type="text" id="input_70" name="q70_relationshipTo70" data-type="input-textbox"
+                                    class="form-textbox validate[required]" data-defaultvalue="" style="width:310px"
+                                    size="310" value="" data-component="textbox"
+                                    aria-labelledby="label_70 sublabel_input_70" required="">
+                                <label class="form-sub-label" for="input_70" id="sublabel_input_70" style="min-height:13px"
+                                    aria-hidden="false"> Put "self" if you are signing your own form </label>
+                            <?php endif; ?>   
                         </span>
                     </div>
                 </li>
-                <li class="form-line jf-required" data-type="control_captcha" id="id_76">
-                    <label class="form-label form-label-top form-label-auto" id="label_76" for="input_76">
-                        Please verify that you are human
-                        <span class="form-required">
-                            *
-                        </span>
-                    </label>
-                    <div id="cid_76" class="form-input-wide jf-required" data-layout="full">
-                        <section data-wrapper-react="true">
-                            <!-- Capcha -->
-                        </section>
-                    </div>
-                </li>
+                <?php if (empty($_POST)): ?>
                 <li class="form-line" data-type="control_button" id="id_2">
                     <div id="cid_2" class="form-input-wide" data-layout="full">
                         <div data-align="auto"
@@ -827,15 +983,13 @@ get_header();
                         </div>
                     </div>
                 </li>
+                <?php endif; ?>
                 <li style="display:none">
                     Should be Empty:
                     <input type="text" name="website" value="">
                 </li>
             </ul>
         </div>
-        <input type="hidden" class="simple_spc" id="simple_spc" name="simple_spc"
-            value="212747077283158-212747077283158">
-        <input type="hidden" name="event_id" value="1681115221932_212747077283158_ZTwe1lo">
     </form>
 
 <?php
